@@ -88,7 +88,7 @@ $.ajax({
 
 
 
-});   
+});
 }
 
 /*Actualizar informacion cabañas*/
@@ -126,7 +126,7 @@ $.ajax({
 
 
 
-});   
+});
 }
 
 /* Borrar datos Cabañas*/
@@ -179,7 +179,7 @@ function detalleClientes(){
     });
 
 
-    
+
 
 
 }
@@ -243,7 +243,7 @@ $.ajax({
 
 
 
-});   
+});
 }
 /*Actualizar informacion clientes*/
 function actualizarCli(){
@@ -278,7 +278,7 @@ $.ajax({
 
 
 
-});   
+});
 }
 
 /* Borrar datos Cliente*/
@@ -331,7 +331,7 @@ function detalleMensaje(){
     });
 
 
-    
+
 
 
 }
@@ -344,7 +344,7 @@ function mostrarTablaMen(items){
 
 
         myTable3+= "<br>";
-        myTable3+= "<td>"+items[i].id +"- "+"</td>";   
+        myTable3+= "<td>"+items[i].id +"- "+"</td>";
         myTable3+= "<td>"+items[i].messagetext +"</td>";
         myTable3+="<td><button onclick ='borrarMen("+ items[i].id+")'>Borrar</button>";
         myTable3+= "</br>";
@@ -384,7 +384,7 @@ $.ajax({
 
 
 
-});   
+});
 }
 
 

@@ -3,39 +3,40 @@
 	<head>
 		<meta charset="UTF-8">
   		<title>Proyecto Alquiler de Caba&ntilde;as</title>
-		  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-		  <script type="text/javascript" src="funciones.js"></script>
+		  <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		  <script type= "text/javascript" src= "funciones.js"></script>
   	</head>
 	<body>
 		<h1 style= "color: #FDFEFE; background-color: #154360; padding: 20px;">
-  		<font face= "Segoe UI">&nbsp;&nbsp;&nbsp;ALQUILER DE CABA&Ntilde;AS</font>
-		  <a href="Página principal.html"><img width= "61px" alt= "Cabana" src= "https://cdn-icons-png.flaticon.com/512/2119/2119247.png" style="float:left;"/></a>
+  			<font face= "Segoe UI">&nbsp;&nbsp;&nbsp;ALQUILER DE CABA&Ntilde;AS</font>
+			<a href= "PaginaPrincipal.html"><img width= "61px" alt= "Cabana" src= "https://cdn-icons-png.flaticon.com/512/2119/2119247.png" style= "float: left;"/></a>
 		</h1>
-		<h2 style="color: #154360; text-align: center;">
-  		<font face="Segoe UI">REGISTRO DE CABA&Ntilde;AS</font>
+		<h2 style= "color: #154360; position: absolute; top: 18%; left: 42%;">
+  			<font face= "Segoe UI">REGISTRO DE CABA&Ntilde;AS</font>
 		</h2>
-		<p style ="position: absolute; top: 185px; left: 520px;">
+		<label style = "position: absolute; top: 33%; left: 38%;">
 			<font face= "Segoe UI">ID</font>
-			</p>
-			<input type= "number" id="id" placeholder= "" style= "position: absolute; top: 200px; left: 720px;" >
-		<p style ="position: absolute; top: 225px; left: 520px;">
-		<font face= "Segoe UI">Nombre</font>
-		</p>
-		<input type= "text" id= "name" placeholder="Escriba el nombre de la cabaña" style= "position: absolute; top: 240px; left: 720px;" >
-		<p style= "position: absolute; top: 265px; left: 520px;">
-		<font face= "Segoe UI">Cantidad de habitaciones</font>
-		</p>
-		<input type= "number" id= "rooms" style= "position: absolute; top: 290px; left: 720px;" >
-		<p style= "position: absolute; top: 310px; left: 520px;">
-		<font face= "Segoe UI">Marca</font>
-		</p>
-		<input type= "text" id = "brand" style= "position: absolute; top: 330px; left: 720px;" >
-		<p style= "position: absolute; top: 350px; left: 520px;">
+		</label>
+		<input type= "number" id= "id" placeholder= "--" style= "position: absolute; top: 33%; left: 53%;">
+		<label style = "position: absolute; top: 39%; left: 38%;">
+				<font face= "Segoe UI">Nombre</font>
+		</label>
+		<input type= "text" id= "name" placeholder= "Ingrese el nombre de la cabaña" style= "position: absolute; top: 39%; left: 53%;">
+		<label style= "position: absolute; top: 45%; left: 38%;">
+			<font face= "Segoe UI">Cantidad de habitaciones</font>
+		</label>
+		<input type= "number" id= "rooms" placeholder= "Ingrese la cantidad de habitaciones" style= "position: absolute; top: 45%; left: 53%;">
+		<label style= "position: absolute; top: 51%; left: 38%;">
+			<font face= "Segoe UI">Marca</font>
+		</label>
+		<input type= "text" id = "brand" placeholder= "Ingrese la marca" style= "position: absolute; top: 51%; left: 53%;">
+		<label style= "position: absolute; top: 57%; left: 38%;">
 		<font face= "Segoe UI">Categoria</font>
-		</p>
-		<input type= "number" id= "category_id" style= "position: absolute; top: 370px; left: 720px;" >
-		<button onclick="registroCab()" style= "color:#FDFEFE; background-color: #154360; font-size: 15px; padding: 8px; position: absolute; top: 420px; left: 650px;">
-		<font face= "Segoe UI">Registrar</font>
+		</label>
+		<input type= "number" id= "category_id" placeholder= "Ingrese la categoria" style= "position: absolute; top: 57%; left: 53%;">
+		<button onclick= "registroCab()" style= "color: #FDFEFE; background-color: #154360; font-size: 15px; padding: 8px; position: absolute; top: 66%; left: 49%;">
+			<font face= "Segoe UI">Registrar</font>
 		</button>
+			<div id= "resultado"></div>
 	</body>
 </html>
