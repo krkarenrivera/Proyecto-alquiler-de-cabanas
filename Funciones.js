@@ -12,14 +12,7 @@ function detalleCabana(){
             console.log(respuesta);
             mostrarTablaCab(respuesta.items)
         }
-
-
     });
-
-
-    
-
-
 }
 
 function mostrarTablaCab(items){
@@ -50,9 +43,6 @@ function redirecCab(){
     window.location.href="ActualizarCabanas.html";
 }
 
-    
-
-
 /*Registro de datos cabañas*/
 
 function registroCab(){
@@ -82,12 +72,7 @@ $.ajax({
         $("#name").val("");
         detalleCabana();
         alert("Se ha guadado el dato")
-
-
     }
-
-
-
 });
 }
 
@@ -120,12 +105,7 @@ $.ajax({
         $("#name").val("");
         detalleCabana();
         alert("Se ha actualizado")
-
-
     }
-
-
-
 });
 }
 
@@ -150,14 +130,7 @@ function borrarCab(idCliente){
             detalleCabana();
             alert("Se ha eliminado.")
         }
-
-
-
-
     });
-
-
-
 }
 
  /*Funciones clientes*/
@@ -174,14 +147,7 @@ function detalleClientes(){
             console.log(respuestaCli);
             mostrarTablaCli(respuestaCli.items)
         }
-
-
     });
-
-
-
-
-
 }
 
 function mostrarTablaCli(items){
@@ -238,11 +204,7 @@ $.ajax({
         detalleClientes();
         alert("Se ha guadado el dato")
 
-
     }
-
-
-
 });
 }
 /*Actualizar informacion clientes*/
@@ -272,12 +234,7 @@ $.ajax({
         $("#age").val("");
         detalleClientes();
         alert("Se ha actualizado")
-
-
     }
-
-
-
 });
 }
 
@@ -302,14 +259,7 @@ function borrarCli(idCliente){
             detalleCabana();
             alert("Se ha eliminado.")
         }
-
-
-
-
     });
-
-
-
 }
 
 /*Funciones Mensajes*/
@@ -326,14 +276,7 @@ function detalleMensaje(){
             console.log(respuestaMen);
             mostrarTablaMen(respuestaMen.items)
         }
-
-
     });
-
-
-
-
-
 }
 
 function mostrarTablaMen(items){
@@ -347,12 +290,18 @@ function mostrarTablaMen(items){
         myTable3+= "<td>"+items[i].id +"- "+"</td>";
         myTable3+= "<td>"+items[i].messagetext +"</td>";
         myTable3+="<td><button onclick ='borrarMen("+ items[i].id+")'>Borrar</button>";
+        myTable3+="<td><button onclick ='redirecMen()'>Actualizar</button>";
         myTable3+= "</br>";
 
     }
     myTable3+= "</table3>";
     $("#resultado3").append(myTable3);
 
+}
+
+function redirecMen(){
+
+    window.location.href="ActualizarMensaje.html";
 }
 
 /*Registro de datos Mensajes*/
@@ -378,15 +327,9 @@ $.ajax({
         $("#messagetext").val("");
         detalleMensaje();
         alert("Se ha guadado el dato")
-
-
     }
-
-
-
 });
 }
-
 
 /* Borrar datos Mensajes*/
 
@@ -409,12 +352,33 @@ function borrarMen(idMen){
             detalleMensaje();
             alert("Se ha eliminado.")
         }
-
-
-
-
     });
+    }
 
+/*Actualizar informacion mensajes*/
+function actualizarMen(){
 
+    let myData ={
+        id:$("#id").val(),
+        messagetext:$("#messagetext").val(),
 
+    };
+
+let dataToSend = JSON.stringify(myData);
+$.ajax({
+
+    url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/message/message",
+    type: "PUT",
+    data: dataToSend,
+    contentType:"application/JSON",
+    dataType: "JSON",
+    success: function(respuestaMen){
+
+        $("#resultado3").empty();
+        $("#id").val("");
+        $("#messagetext").val("");
+        detalleMensaje();
+        alert("Se ha actualizado")
+    }
+});
 }
