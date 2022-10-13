@@ -36,8 +36,8 @@ public class Category implements Serializable {
 
 
 
-    public void setIdCategory(Integer idCategory) {
-        this.id = idCategory;
+    public void setIdCategory(Integer id) {
+        this.id = id;
     }
 
     public void setName(String name) {
