@@ -26,7 +26,8 @@ public class Cabana implements Serializable {
     private Category category;
 
     @OneToMany(cascade = {CascadeType.ALL}, mappedBy = "cabana")
-    @JsonIgnoreProperties({"cabins"})
+    @JsonIgnoreProperties({"cabins", "messages"})
+    private List<Message> messages;
     private List<Reservas> reservations;
 
 
@@ -93,5 +94,13 @@ public class Cabana implements Serializable {
 
     public void setReservations(List<Reservas> reservations) {
         this.reservations = reservations;
+    }
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
     }
 }
