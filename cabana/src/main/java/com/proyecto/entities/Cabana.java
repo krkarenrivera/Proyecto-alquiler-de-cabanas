@@ -20,7 +20,10 @@ public class Cabana implements Serializable {
 
     private String description;
 
-
+    @ManyToOne
+    @JoinColumn(name= "category_id")
+    @JsonIgnoreProperties("cabana")
+    private Category category;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "cabana")
     @JsonIgnoreProperties({"cabana", "messages"})
