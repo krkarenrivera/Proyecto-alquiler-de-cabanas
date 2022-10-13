@@ -53,9 +53,7 @@ public class CabanaService {
                 if (p.getRooms()!= null){
                     q.get().setRooms(p.getRooms());
                 }
-                if (p.getCategory()!= null){
-                    q.get().setCategory(p.getCategory());
-                }
+
                 if (p.getDescription()!=null){
                     q.get().setDescription(p.getDescription());
                 }
