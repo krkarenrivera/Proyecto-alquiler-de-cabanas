@@ -6,9 +6,8 @@ function detalleCabana(){
 
         url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/cabin/cabin",
         type: "GET",
-        dataType :"JSON",
-        success :function(respuesta){
-
+        dataType: "JSON",
+        success: function(respuesta){
             console.log(respuesta);
             mostrarTablaCab(respuesta.items)
         }
@@ -17,25 +16,31 @@ function detalleCabana(){
 
 function mostrarTablaCab(items){
 
+    let myTable = "<table style= 'background: #cccccc; margin-top: 30px;'>";
+    myTable+= "<tr bgcolor='#ffffff'>";
+    myTable+= "<th style= 'padding: 8px;'>ID</th>";
+    myTable+= "<th style= 'padding: 8px;'>Nombre</th>";
+    myTable+= "<th style= 'padding: 8px;'>Habitaciones</th>";
+    myTable+= "<th style= 'padding: 8px;'>Marca</th>";
+    myTable+= "<th style= 'padding: 8px;'>Categoria</th>";
+    myTable+= "<th style= 'padding: 8px;'>Borrar</th>";
+    myTable+= "<th style= 'padding: 8px;'>Actualizar</th>";
+    myTable+= "</tr>";
 
-    let myTable = "<table>";
-     
     for(i=0 ; i < items.length;i++){
-        
-        myTable+= "<tr>";   
-        myTable+= "<td>"+items[i].id +"</td>";
-        myTable+= "<td>"+items[i].name+"</td>";
-        myTable+= "<td>"+items[i].rooms +"</td>";
-        myTable+= "<td>"+items[i].brand +"</td>";
-        myTable+= "<td>"+items[i].category_id+"</td>";
-        myTable+="<td><button onclick ='borrarCab("+ items[i].id+")'>Borrar</button>";
-        myTable+="<td><button onclick ='redirecCab()'>Actualizar</button>";
-        myTable+= "</tr>";
 
+        myTable+= "<tr bgcolor='#ffffff'>";
+        myTable+= "<td style= 'padding: 8px;'>"+items[i].id +"</td>";
+        myTable+= "<td style= 'padding: 8px;'>"+items[i].name+"</td>";
+        myTable+= "<td style= 'padding: 8px;'>"+items[i].rooms +"</td>";
+        myTable+= "<td style= 'padding: 8px;'>"+items[i].brand +"</td>";
+        myTable+= "<td style= 'padding: 8px;'>"+items[i].category_id+"</td>";
+        myTable+="<td style= 'padding: 8px;'><button onclick ='borrarCab("+ items[i].id+")'>Borrar</button>";
+        myTable+="<td style= 'padding: 8px;'><button onclick ='redirecCab()'>Actualizar</button>";
+        myTable+= "</tr>";
     }
     myTable+= "</table>";
     $("#resultado").append(myTable);
-
 }
 
 function redirecCab(){
@@ -46,67 +51,76 @@ function redirecCab(){
 /*Registro de datos cabañas*/
 
 function registroCab(){
+    if ($("#id").val() != "" && $("#brand").val() != "" && $("#rooms").val() != "" && $("#category_id").val() != "" && $("#name").val() != ""){
 
-    let myData ={
-        id:$("#id").val(),
-        brand:$("#brand").val(),
-        rooms:$("#rooms").val(),
-        category_id:$("#category_id").val(),
-        name:$("#name").val(),
-    };
+        let myData ={
+            id:$("#id").val(),
+            brand:$("#brand").val(),
+            rooms:$("#rooms").val(),
+            category_id:$("#category_id").val(),
+            name:$("#name").val(),
+        };
 
-let dataToSend = JSON.stringify(myData);
-$.ajax({
+    let dataToSend = JSON.stringify(myData);
+    $.ajax({
 
-    url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/cabin/cabin",
-    type: "POST",
-    data: myData,
-    dataType: "JSON",
-    success(respuesta){
+        url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/cabin/cabin",
+        type: "POST",
+        data: myData,
+        dataType: "JSON",
+        success: function(respuesta){
 
-        $("#resultado").empty();
-        $("#id").val("");
-        $("#brand").val("");
-        $("#rooms").val("");
-        $("#category_id").val("");
-        $("#name").val("");
-        detalleCabana();
-        alert("Se ha guadado el dato")
+            $("#resultado").empty();
+            $("#id").val("");
+            $("#brand").val("");
+            $("#rooms").val("");
+            $("#category_id").val("");
+            $("#name").val("");
+            alert("¡Registrado con exito!")
+        }
+    });
     }
-});
+    else {
+         alert("¡Debe ingresar la información de todos los campos!")
+    }
 }
 
 /*Actualizar informacion cabañas*/
+
 function actualizarCab(){
+    if ($("#id").val() != "" && $("#brand").val() != "" && $("#rooms").val() != "" && $("#category_id").val() != "" && $("#name").val() != ""){
 
-    let myData ={
-        id:$("#id").val(),
-        brand:$("#brand").val(),
-        rooms:$("#rooms").val(),
-        category_id:$("#category_id").val(),
-        name:$("#name").val(),
-    };
+        let myData ={
+            id:$("#id").val(),
+            brand:$("#brand").val(),
+            rooms:$("#rooms").val(),
+            category_id:$("#category_id").val(),
+            name:$("#name").val(),
+        };
 
-let dataToSend = JSON.stringify(myData);
-$.ajax({
+    let dataToSend = JSON.stringify(myData);
+    $.ajax({
 
-    url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/cabin/cabin",
-    type: "PUT",
-    data: dataToSend,
-    contentType:"application/JSON",
-    dataType: "JSON",
-    success: function(respuesta){
+        url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/cabin/cabin",
+        type: "PUT",
+        data: dataToSend,
+        contentType:"application/JSON",
+        dataType: "JSON",
+        success: function(respuesta){
 
-        $("#resultado").empty();
-        $("#id").val("");
-        $("#brand").val("");
-        $("#rooms").val("");
-        $("#category_id").val("");
-        $("#name").val("");
-        detalleCabana();
-        alert("Se ha actualizado")
+            $("#resultado").empty();
+            $("#id").val("");
+            $("#brand").val("");
+            $("#rooms").val("");
+            $("#category_id").val("");
+            $("#name").val("");
+            alert("¡Actualizado con exito!")
+        }
+    });
     }
-});
+    else {
+          alert("¡Debe ingresar la información de todos los campos!")
+    }
 }
 
 /* Borrar datos Cabañas*/
@@ -124,11 +138,11 @@ function borrarCab(idCliente){
         type : "DELETE",
         data: dataToSend,
         contentType: "application/JSON",
-        dataType:"JSON",
+        dataType: "JSON",
         success:function(respuesta){
             $("#resultado").empty();
-            detalleCabana();
-            alert("Se ha eliminado.")
+            detalleCabana()
+            alert("¡Eliminado con exito!")
         }
     });
 }
@@ -143,7 +157,6 @@ function detalleClientes(){
         type: "GET",
         dataType :"JSON",
         success :function(respuestaCli){
-
             console.log(respuestaCli);
             mostrarTablaCli(respuestaCli.items)
         }
@@ -153,23 +166,30 @@ function detalleClientes(){
 function mostrarTablaCli(items){
 
 
-    let myTable2 = "<table2>";
+    let myTable2 = "<table style= 'background: #cccccc; margin-top: 30px;'>";
+    myTable2+= "<tr bgcolor='#ffffff'>";
+    myTable2+= "<th style= 'padding: 8px;'>ID</th>";
+    myTable2+= "<th style= 'padding: 8px;'>Nombre</th>";
+    myTable2+= "<th style= 'padding: 8px;'>Edad</th>";
+    myTable2+= "<th style= 'padding: 8px;'>Correo electrónico</th>";
+    myTable2+= "<th style= 'padding: 8px;'>Borrar</th>";
+    myTable2+= "<th style= 'padding: 8px;'>Actualizar</th>";
+    myTable2+= "</tr>";
+
     for(i=0 ; i < items.length;i++){
 
 
-        myTable2+= "<br>";
-        myTable2+= "<td>"+items[i].id +"- "+"</td>";
-        myTable2+= "<td>"+items[i].name +"- "+"</td>";
-        myTable2+= "<td>"+items[i].email +"- "+"</td>";
-        myTable2+= "<td>"+items[i].age+" "+"</td>";
-        myTable2+="<td><button onclick ='borrarCli("+ items[i].id+")'>Borrar</button>";
-        myTable2+="<td><button onclick ='redirecClie()'>Actualizar</button>";
-        myTable2+= "</br>";
-
+        myTable2+= "<tr bgcolor='#ffffff'>";
+        myTable2+= "<td style= 'padding: 8px;'>"+items[i].id +"</td>";
+        myTable2+= "<td style= 'padding: 8px;'>"+items[i].name +"</td>";
+        myTable2+= "<td style= 'padding: 8px;'>"+items[i].email +"</td>";
+        myTable2+= "<td style= 'padding: 8px;'>"+items[i].age+"</td>";
+        myTable2+="<td style= 'padding: 8px;'><button onclick ='borrarCli("+ items[i].id+")'>Borrar</button>";
+        myTable2+="<td style= 'padding: 8px;'><button onclick ='redirecClie()'>Actualizar</button>";
+        myTable2+= "</tr>";
     }
     myTable2+= "</table2>";
     $("#resultado2").append(myTable2);
-
 }
 function redirecClie(){
 
@@ -179,63 +199,70 @@ function redirecClie(){
 /*Registro de datos clientes*/
 
 function registroCli(){
+    if ($("#id").val() != "" && $("#name").val() != "" && $("#email").val() != "" && $("#age").val() != ""){
 
-    let myData ={
-        id:$("#id").val(),
-        name:$("#name").val(),
-        email:$("#email").val(),
-        age:$("#age").val(),
-    };
+        let myData ={
+            id:$("#id").val(),
+            name:$("#name").val(),
+            email:$("#email").val(),
+            age:$("#age").val(),
+        };
 
-let dataToSend = JSON.stringify(myData);
-$.ajax({
+    let dataToSend = JSON.stringify(myData);
+    $.ajax({
 
-    url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/client/client",
-    type: "POST",
-    data: myData,
-    dataType: "JSON",
-    success(respuestaCli){
+        url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/client/client",
+        type: "POST",
+        data: myData,
+        dataType: "JSON",
+        success(respuestaCli){
 
-        $("#resultado2").empty();
-        $("#id").val("");
-        $("#name").val("");
-        $("#email").val("");
-        $("#age").val("");
-        detalleClientes();
-        alert("Se ha guadado el dato")
-
+            $("#resultado2").empty();
+            $("#id").val("");
+            $("#name").val("");
+            $("#email").val("");
+            $("#age").val("");
+            alert("¡Registrado con exito!")
+        }
+    });
     }
-});
+    else {
+             alert("¡Debe ingresar la información de todos los campos!")
+    }
 }
 /*Actualizar informacion clientes*/
 function actualizarCli(){
+    if ($("#id").val() != "" && $("#brand").val() != "" && $("#rooms").val() != "" && $("#category_id").val() != "" && $("#name").val() != ""){
 
-    let myData ={
-        id:$("#id").val(),
-        name:$("#name").val(),
-        email:$("#email").val(),
-        age:$("#age").val(),
-    };
+        let myData ={
+            id:$("#id").val(),
+            name:$("#name").val(),
+            email:$("#email").val(),
+            age:$("#age").val(),
+        };
 
-let dataToSend = JSON.stringify(myData);
-$.ajax({
+    let dataToSend = JSON.stringify(myData);
+    $.ajax({
 
-    url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/client/client",
-    type: "PUT",
-    data: dataToSend,
-    contentType:"application/JSON",
-    dataType: "JSON",
-    success: function(respuestaCli){
+        url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/client/client",
+        type: "PUT",
+        data: dataToSend,
+        contentType:"application/JSON",
+        dataType: "JSON",
+        success: function(respuestaCli){
 
-        $("#resultado2").empty();
-        $("#id").val("");
-        $("#name").val("");
-        $("#email").val("");
-        $("#age").val("");
-        detalleClientes();
-        alert("Se ha actualizado")
+            $("#resultado2").empty();
+            $("#id").val("");
+            $("#name").val("");
+            $("#email").val("");
+            $("#age").val("");
+            alert("¡Actualizado con exito!")
+        }
+    });
     }
-});
+    else {
+             alert("¡Debe ingresar la información de todos los campos!")
+    }
 }
 
 /* Borrar datos Cliente*/
@@ -256,8 +283,8 @@ function borrarCli(idCliente){
         dataType:"JSON",
         success:function(respuesta){
             $("#resultado2").empty();
-            detalleCabana();
-            alert("Se ha eliminado.")
+            detalleClientes();
+            alert("¡Eliminado con exito!")
         }
     });
 }
@@ -272,7 +299,6 @@ function detalleMensaje(){
         type: "GET",
         dataType :"JSON",
         success :function(respuestaMen){
-
             console.log(respuestaMen);
             mostrarTablaMen(respuestaMen.items)
         }
@@ -281,17 +307,22 @@ function detalleMensaje(){
 
 function mostrarTablaMen(items){
 
+    let myTable3 = "<table style= 'background: #cccccc; margin-top: 30px;'>";
+    myTable3+= "<tr bgcolor='#ffffff'>";
+    myTable3+= "<th style= 'padding: 8px;'>ID</th>";
+    myTable3+= "<th style= 'padding: 8px;'>Mensaje</th>";
+    myTable3+= "<th style= 'padding: 8px;'>Borrar</th>";
+    myTable3+= "<th style= 'padding: 8px;'>Actualizar</th>";
+    myTable3+= "</tr>";
 
-    let myTable3 = "<table3>";
     for(i=0 ; i < items.length;i++){
 
-
-        myTable3+= "<br>";
-        myTable3+= "<td>"+items[i].id +"- "+"</td>";
-        myTable3+= "<td>"+items[i].messagetext +"</td>";
-        myTable3+="<td><button onclick ='borrarMen("+ items[i].id+")'>Borrar</button>";
-        myTable3+="<td><button onclick ='redirecMen()'>Actualizar</button>";
-        myTable3+= "</br>";
+        myTable3+= "<tr bgcolor='#ffffff'>";
+        myTable3+= "<td style= 'padding: 8px;'>"+items[i].id +"</td>";
+        myTable3+= "<td style= 'padding: 8px;'>"+items[i].messagetext +"</td>";
+        myTable3+="<td style= 'padding: 8px;'><button onclick ='borrarMen("+ items[i].id+")'>Borrar</button>";
+        myTable3+="<td style= 'padding: 8px;'><button onclick ='redirecMen()'>Actualizar</button>";
+        myTable3+= "</tr>";
 
     }
     myTable3+= "</table3>";
@@ -307,30 +338,33 @@ function redirecMen(){
 /*Registro de datos Mensajes*/
 
 function registroMen(){
+    if ($("#id").val() != "" && $("#messagetext").val() != ""){
 
-    let myData ={
-        id:$("#id").val(),
-        messagetext:$("#messagetext").val(),
-    };
+             let myData ={
+                 id:$("#id").val(),
+                 messagetext:$("#messagetext").val(),
+             };
 
-let dataToSend = JSON.stringify(myData);
-$.ajax({
+         let dataToSend = JSON.stringify(myData);
+         $.ajax({
 
-    url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/message/message",
-    type: "POST",
-    data: myData,
-    dataType: "JSON",
-    success(respuestaMen){
+             url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/message/message",
+             type: "POST",
+             data: myData,
+             dataType: "JSON",
+             success: function(respuestaMen){
 
-        $("#resultado3").empty();
-        $("#id").val("");
-        $("#messagetext").val("");
-        detalleMensaje();
-        alert("Se ha guadado el dato")
-    }
-});
+                 $("#resultado3").empty();
+                 $("#id").val("");
+                 $("#messagetext").val("");
+                 alert("¡Registrado con exito!")
+             }
+         });
+         }
+         else {
+               alert("¡Debe ingresar la información de todos los campos!")
+         }
 }
-
 /* Borrar datos Mensajes*/
 
 function borrarMen(idMen){
@@ -350,35 +384,39 @@ function borrarMen(idMen){
         success:function(respuestaMen){
             $("#resultado3").empty();
             detalleMensaje();
-            alert("Se ha eliminado.")
+            alert("¡Eliminado con exito!")
         }
     });
     }
 
 /*Actualizar informacion mensajes*/
 function actualizarMen(){
+    if ($("#id").val() != "" && $("#messagetext").val() != ""){
 
-    let myData ={
-        id:$("#id").val(),
-        messagetext:$("#messagetext").val(),
+        let myData ={
+            id:$("#id").val(),
+            messagetext:$("#messagetext").val(),
 
-    };
+        };
 
-let dataToSend = JSON.stringify(myData);
-$.ajax({
+    let dataToSend = JSON.stringify(myData);
+    $.ajax({
 
-    url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/message/message",
-    type: "PUT",
-    data: dataToSend,
-    contentType:"application/JSON",
-    dataType: "JSON",
-    success: function(respuestaMen){
+        url:"https://g9a57240d8d860f-r2oj2f73pu6lrxwm.adb.eu-frankfurt-1.oraclecloudapps.com/ords/admin/message/message",
+        type: "PUT",
+        data: dataToSend,
+        contentType:"application/JSON",
+        dataType: "JSON",
+        success: function(respuestaMen){
 
-        $("#resultado3").empty();
-        $("#id").val("");
-        $("#messagetext").val("");
-        detalleMensaje();
-        alert("Se ha actualizado")
+            $("#resultado3").empty();
+            $("#id").val("");
+            $("#messagetext").val("");
+            alert("¡Actualizado con exito!")
+        }
+    });
     }
-});
+    else {
+          alert("¡Debe ingresar la información de todos los campos!")
+    }
 }
