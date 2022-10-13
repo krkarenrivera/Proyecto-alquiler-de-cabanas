@@ -1,5 +1,5 @@
 /*Funciones cabañas*/
-
+/*Prueba*/
 function detalleCabana(){
 
     $.ajax({
