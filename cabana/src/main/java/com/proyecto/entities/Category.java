@@ -25,9 +25,6 @@ public class Category implements Serializable {
 
 
 
-    public Integer getIdCategory() {
-        return id;
-    }
 
     public String getName() {
         return name;
