@@ -22,11 +22,11 @@ public class Cabana implements Serializable {
 
     @ManyToOne
     @JoinColumn(name= "category_id")
-    @JsonIgnoreProperties("cabana")
+    @JsonIgnoreProperties("cabins")
     private Category category;
 
     @OneToMany(cascade = {CascadeType.PERSIST}, mappedBy = "cabana")
-    @JsonIgnoreProperties({"cabana", "messages"})
+    @JsonIgnoreProperties({"cabins", "messages"})
     private List<Reservas> reservations;
 
 
